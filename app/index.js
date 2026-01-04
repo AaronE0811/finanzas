@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "pages")));
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "pages/main.html")));
 app.get("/login", (req, res) => res.sendFile(path.join(__dirname, "pages/IniciarSesion.html")));
 app.get("/reset-password", (req, res) => res.sendFile(path.join(__dirname, "pages/cambiarClave.html")));
-
+app.get("/register", (req, res) => res.sendFile(path.join(__dirname, "pages/CrearCuenta.html")));
 // Rutas de API (Backend)
 app.use("/api", routes);
 app.use("/api", crearCuenta);
