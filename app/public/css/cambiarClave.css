@@ -134,3 +134,14 @@ main{
     color: white;
     cursor: pointer;
 }
+@media (max-width: 768px) {
+    main{
+        width: 90%;
+    }
+    .correo input, .nuevaClave input, .confirmarClave input{
+        width: 90%;
+    }
+    .correo button, .nuevaClave button{
+        width: 50%;
+    }
+}
