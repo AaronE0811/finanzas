@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import User from '../models/modelUser.js';
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // 1. Configuración de Transporter 
 const transporter = nodemailer.createTransport({
@@ -58,6 +60,8 @@ export const enviarCodigo = async (req, res) => {
         await guardarCodigoVerificacion(email, codigo);
         res.status(200).json({ message: 'Código enviado.' });
     } catch (error) {
+        console.log(error);
+        
         res.status(500).json({ message: 'Error al enviar código.' });
     }
 };
@@ -100,15 +104,16 @@ export const loginUsuario = async (req, res) => {
         res.status(500).json({ message: 'Error al iniciar sesión' });
     }
 };
+
 export const verificarCodigo = async (req, res) => {
     const { email, codigo } = req.body;
     try {
         const usuario = await User.findOne({ email });
-        if (!usuario || usuario.codigoVerificacion !== codigo) {
+        if (!usuario || String(usuario.codigoVerificacion) !== String(codigo)) {
             return res.status(400).json({ message: 'Código incorrecto o expirado.' });
         }
-        res.status(200).json({ message: 'Código verificado con éxito.' });
+        res.status(200).json({ message: 'Código verificado con éxito.', error });
     } catch (error) {
-        res.status(500).json({ message: 'Error al verificar el código.' });
+        res.status(500).json({ message: 'Error al verificar el código.', error });
     }
 };
