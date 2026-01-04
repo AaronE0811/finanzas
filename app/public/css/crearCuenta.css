@@ -88,3 +88,12 @@ form input:focus{
     border-radius: 5px;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    main {
+        width: 80%;
+    }
+    form {
+        width: 80%;
+    }
+}
