@@ -100,3 +100,15 @@ export const loginUsuario = async (req, res) => {
         res.status(500).json({ message: 'Error al iniciar sesión' });
     }
 };
+export const verificarCodigo = async (req, res) => {
+    const { email, codigo } = req.body;
+    try {
+        const usuario = await User.findOne({ email });
+        if (!usuario || usuario.codigoVerificacion !== codigo) {
+            return res.status(400).json({ message: 'Código incorrecto o expirado.' });
+        }
+        res.status(200).json({ message: 'Código verificado con éxito.' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al verificar el código.' });
+    }
+};
