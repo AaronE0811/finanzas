@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <h1>Finanzas personales</h1>
+
+        <div class="gestionar">
+            <a  href="/IniciarSesion.html" style="color: white;">Iniciar Sesion</a>
+            <a id="logout">Cerrar Sesion</a>
+        </div>
+    </header>
+    <section>
+        <div id="loader" class="loader" style="display:none;"></div>
+        <div class="ingresarDatos">
+
+            <form id="form-1">
+                <div class="IngresarMonto">
+
+                    <input type="text" placeholder="Ingresar Monto" id="IngresarMonto" min="1" step="0.01">
+                </div>
+                <div class="elegirCategoria">
+                    <input type="text" placeholder="Ingresar Categoria del gasto" id="elegirCategoria">
+                </div>
+                <div class="Tipo">
+                    <select class="tipo" name="tipo" id="tipo">
+                        <option selected=>Seleccione un tipo</option>
+                        <option value="Ingreso">Ingreso</option>
+                        <option value="Gasto">Gasto</option>
+                    </select>
+                </div>
+                <div class="mes">
+                    <select class="tipo" name="mes" id="mes">
+                        <option selected disabled>Seleccione un mes</option>
+                        <option value="enero">enero</option>
+                        <option value="febrero">febrero</option>
+                        <option value="marzo">marzo</option>
+                        <option value="abril">abril</option>
+                        <option value="mayo">mayo</option>
+                        <option value="junio">junio</option>
+                        <option value="julio">julio</option>
+                        <option value="agosto">agosto</option>
+                        <option value="septiembre">septiembre</option>
+                        <option value="octubre">octubre</option>
+                        <option value="noviembre">noviembre</option>
+                        <option value="diciembre">diciembre</option>
+                    </select>
+                </div>
+                <div class="btnEnviar">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="grafica">
+            <div class="leyenda">
+                <h3>Resumen Financiero por mes</h3>
+            </div>
+            <div class="graficos">
+                <div class="navegar">
+
+                    <ul class="nav nav-tabs" id="mes-tabs">
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="enero">Enero</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="febrero">Febrero</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="marzo">Marzo</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="abril">Abril</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="mayo">Mayo</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="junio">Junio</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="julio">Julio</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="agosto">Agosto</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#"
+                                data-mes="septiembre">Septiembre</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="octubre">Octubre</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="noviembre">Noviembre</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-white" href="#" data-mes="diciembre">Diciembre</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="graficaDeColores">
+                    <canvas id="graficoCircular"></canvas>
+
+                    <div class="tablaEntradas">
+                        <table id="tablaDatos" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Monto</th>
+                                    <th>Tipo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="balanceAnual">
+            <h3>Balance Anual</h3>
+            <canvas id="graficoBarras"></canvas>
+        </div>
+    </section>
+
+
+    <script type="module" src="/js/main.js?v=1"></script>
+
+
+
+    <script src="/js/sweetalert2.all.min.js"></script>
+
+    <script>
+  window.addEventListener("pageshow", (event) => {
+    const username = localStorage.getItem("username");
+    if (!username) {
+     
+      if (event.persisted || !username) {
+        window.location.href = "/IniciarSesion.html";
+      }
+    }
+  });
+</script>
+
+
+    <script>
+  function renderUserLink() {
+    const username = localStorage.getItem('username');
+    const gestionarLinks = document.querySelectorAll('.gestionar a');
+    const loginLink = gestionarLinks[0];
+
+    if (username) {
+      loginLink.textContent = username;
+      loginLink.removeAttribute('href');
+      loginLink.style.cursor = 'default';
+    } else {
+      loginLink.textContent = 'Iniciar Sesion';
+      loginLink.setAttribute('href', '/IniciarSesion.html');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', renderUserLink);
+</script>
+
+<script>
+  const logoutBtn = document.getElementById('logout');
+
+  logoutBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('username');
+    
+    window.location.href = '/IniciarSesion.html';
+  });
+</script>
+
+
+</body>
+
+</html>

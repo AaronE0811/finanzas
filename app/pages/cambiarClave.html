@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/cambiarClave.css">
+</head>
+<body>
+    <main>
+        <h1>Cambiar Clave</h1>
+
+        <form id="form-1">
+            <div class="correo">
+                <input type="email" id="correo" name="correo" required placeholder="correo electrónico registrado">
+                <button type="submit" id="btnEnviar">Verificar</button>
+            </div>
+            <div  id="inputs" class="inputs">
+                <input type="text" disabled title="Primero verifica el correo para habilitar este espacio" maxlength="1" class="code-input" />
+                <input type="text" disabled title="Primero verifica el correo para habilitar este espacio" maxlength="1" class="code-input" />
+                <input type="text" disabled title="Primero verifica el correo para habilitar este espacio" maxlength="1" class="code-input" />
+                <input type="text" disabled title="Primero verifica el correo para habilitar este espacio" maxlength="1" class="code-input" />
+                <input type="text" disabled title="Primero verifica el correo para habilitar este espacio" maxlength="1" class="code-input" />
+                <input type="text" disabled title="Primero verifica el correo para habilitar este espacio" maxlength="1" class="code-input" />
+                <div class="btncode">
+                    <button type="button" disabled title="Primero verifica el correo para habilitar este espacio" id="btnVerificar">Verificar Código</button>
+                </div>
+            </div>
+            
+            <div class="nuevaClave">
+                <input type="password" disabled title="Primero haz los pasos anteriores" id="nuevaClave" name="nuevaClave"  placeholder="Nueva Clave">
+                <input type="password" disabled title="Primero haz los pasos anteriores" id="confirmarClave" name="confirmarClave"  placeholder="Confirmar Clave">
+                <button type="button" disabled title="Primero haz los pasos anteriores" id="btnCambiar">Cambiar Clave</button>
+            </div>
+        </form>
+    </main>
+</body>
+        <script src="/js/sweetalert2.all.min.js"></script>
+        <script src="/js/cambiarClave.js"></script>
+</html>

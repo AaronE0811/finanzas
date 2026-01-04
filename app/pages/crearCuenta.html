@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/crearCuenta.css">
+</head>
+<body>
+    <main>
+        <h1>Crear cuenta nueva</h1>
+
+        <form id="form-1">
+            <div class="username">
+                
+                <input type="text" id="username" name="username" required placeholder="Usuario">
+            </div>
+            <div class="correo electronico">
+                
+                <input type="email" id="correo" name="correo" required placeholder="Correo electrónico">
+            </div>
+            <div class="password">
+                
+                <input type="password" id="password" name="password" required placeholder="Contraseña" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}" title="Debe tener mínimo 8 caracteres, incluir mayúscula, minúscula, número y símbolo">
+            </div>
+            
+            <div class="boton">
+                <button type="submit">Crear Cuenta</button>
+            </div>
+        </form>
+    </main>
+</body>
+        <script src="/js/sweetalert2.all.min.js"></script>
+        <script src="/js/crearCuenta.js"></script>
+</html>
